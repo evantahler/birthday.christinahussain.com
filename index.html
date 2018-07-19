@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>HAPPY BIRTHDAY CHRISTINA!</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    html, body {
+      font-family: 'Josefin Sans', sans-serif;
+      margin: 0 0;
+      padding: 0 0;
+      text-align: center;
+      font-size: 50;
+      color: white;
+    }
+
+    .centered {
+       position: absolute;
+       bottom: 15px;
+       text-align: center;
+       width: 100%;
+    }
+
+    .sign {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .sign__word {
+      font-size: 5.6rem;
+      text-align: center;
+      line-height: 1;
+      color: white;
+      -webkit-animation: neon .08s ease-in-out infinite alternate;
+              animation: neon .08s ease-in-out infinite alternate;
+    }
+
+    /*-- Animation Keyframes --*/
+    @-webkit-keyframes neon {
+      from {
+        text-shadow: 0 0 16px rgba(202, 228, 225, 0.92), 0 0 60px rgba(202, 228, 225, 0.34), 0 0 22px rgba(30, 132, 242, 0.52), 0 0 21px rgba(30, 132, 242, 0.92), 0 0 34px rgba(30, 132, 242, 0.78), 0 0 54px rgba(30, 132, 242, 0.92);
+      }
+      to {
+        text-shadow: 0 0 16px rgba(202, 228, 225, 0.98), 0 0 60px rgba(202, 228, 225, 0.42), 0 0 22px rgba(30, 132, 242, 0.58), 0 0 22px rgba(30, 132, 242, 0.84), 0 0 38px rgba(30, 132, 242, 0.88), 0 0 60px #1e84f2;
+      }
+    }
+    @keyframes neon {
+      from {
+        text-shadow: 0 0 16px rgba(202, 228, 225, 0.92), 0 0 60px rgba(202, 228, 225, 0.34), 0 0 22px rgba(30, 132, 242, 0.52), 0 0 21px rgba(30, 132, 242, 0.92), 0 0 34px rgba(30, 132, 242, 0.78), 0 0 54px rgba(30, 132, 242, 0.92);
+      }
+      to {
+        text-shadow: 0 0 16px rgba(202, 228, 225, 0.98), 0 0 60px rgba(202, 228, 225, 0.42), 0 0 22px rgba(30, 132, 242, 0.58), 0 0 22px rgba(30, 132, 242, 0.84), 0 0 38px rgba(30, 132, 242, 0.88), 0 0 60px #1e84f2;
+      }
+    }
+
+    </style>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+      <script src="/trianglify.min.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="centered sign" onclick="window.location.href='https://www.google.com/maps/d/u/0/embed?mid=1ua-0XIuL228WMUzqfnvvCG4ubHjIoz45'">
+        <span class="sign__word">HAPPY</span>
+        <span class="sign__word">BIRTHDAY</span>
+        <span class="sign__word">CHRISTINA!</span>
+        (click to see where we are going!)
+    </div>
+
+    <script>
+    // set up the base pattern
+    var pattern = Trianglify({
+      height: window.innerHeight,
+      width: window.innerWidth,
+      cell_size: 30 + Math.random() * 100,
+      seed: 1
+    })
+    // canvas
+    var canvas = pattern.canvas();
+    document.body.appendChild(canvas);
+    // Create a TWEEN
+    var varianceDirection = true;
+    var varianceInc = 0;
+    var tween = new TWEEN.Tween({ val: varianceInc })
+      .easing(TWEEN.Easing.Quadratic.InOut)
+      .to({ val: 50 }, 2000)
+      .onUpdate(function() {
+        pattern.recalculate({
+          variance: 0.5 + (this.val / 100)
+        })
+        pattern.canvas(canvas)
+      })
+      .repeat(Infinity)
+      .yoyo(true)
+      .start();
+    function animate() {
+      try {
+        // start the timer for the next animation loop
+        requestAnimationFrame(animate)
+        TWEEN.update();
+      }
+      catch (e) {
+        console.log(e);
+      }
+    }
+    animate()
+    </script>
+  </body>
+</html>
